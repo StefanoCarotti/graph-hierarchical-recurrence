@@ -1,0 +1,8 @@
+H_steps: 2
+L_steps: 2
+dropout: 0
+hidden_dim: 32
+lr: 0.001
+reasoning_steps: 5
+use_swiglu: true
+weight_decay: 0.0001

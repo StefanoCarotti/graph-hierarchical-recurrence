@@ -1,0 +1,95 @@
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+build/
+dist/
+*.egg-info/
+.eggs/
+MANIFEST
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+*.ipynb
+.ipynb_checkpoints/
+
+# ── macOS / OS ────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+.Rhistory
+
+# ── Claude Code ───────────────────────────────────────────────────────────────
+CLAUDE.md
+
+# ── IDE / Editor ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.code-workspace
+*.swp
+*.swo
+*~
+
+# ── ML: Model checkpoints & weights ──────────────────────────────────────────
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.bin
+
+# ── ML: Training logs & experiment tracking ───────────────────────────────────
+lightning_logs/
+logs/
+logs_server/
+tb_logs/
+wandb/
+runs/
+ray_results/
+mlruns/
+*.tfevents.*
+
+# ── ML: Results and run-specific output dirs ─────────────────────────────────
+results/
+ECHO_search_results/
+ablation_data/
+range_test/
+
+# ── ML: Data files ────────────────────────────────────────────────────────────
+data/
+datasets/
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.lmdb
+*.db
+*.arrow
+*.parquet
+
+# ── ML: Cache directories ─────────────────────────────────────────────────────
+cache/
+.cache/
+__graph_cache__/
+
+# ── Secrets & environment ─────────────────────────────────────────────────────
+.env
+.env.*
+*.pem
+*.key
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.bak
+
+# ── Quarantine archive (moved files, not deleted) ────────────────────────────
+_quarantine/
