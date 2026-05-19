@@ -5,26 +5,26 @@
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-GHR is a graph neural network architecture designed for tasks that require propagating information across many hops. It maintains two coupled hidden states—one at the resolution of the original graph and one at the resolution of a learned coarse abstraction—and evolves them together over multiple recurrent steps. The coarse level provides long-range context to the fine level at every step; the fine level continuously summarises back upward. At inference time, the joint state is rolled forward across several reasoning steps, so the effective receptive field grows with computation rather than with depth. Unlike transformer-based long-range methods, GHR scales linearly with graph size and requires no positional encoding (except on molecular benchmarks where Laplacian PE is used as an optional add-on).
+GHR is a graph neural network framework designed for tasks that require propagating information across many hops. It maintains two coupled hidden states—one at the resolution of the original graph and one at the resolution of a learned coarse abstraction—and evolves them together over multiple recurrent steps. The coarse level provides long-range context to the fine level at every step; the fine level continuously summarises back upward. At inference time, the joint state is rolled forward across several reasoning steps, so the effective receptive field grows with computation rather than with depth. Unlike transformer-based long-range methods, GHR scales linearly with graph size and uses no positional encoding (on molecular benchmarks Laplacian PE can be used as an optional add-on).
 
 The model is trained end-to-end with backpropagation through time (BPTT) on a temporally-discounted loss that assigns higher weight to later steps, encouraging the recurrent dynamics to converge rather than merely fit the first pass.
 
 ---
 
-## Method
+## The framework
 
 **Dual-level architecture.** Given a graph G = (V, E), a one-level coarsening is computed once (using the Graclus algorithm) to produce a smaller graph `G_H` and a cluster assignment c : V → V_H. GHR maintains two hidden states: `h_L` (fine, one vector per original node) and `h_H` (coarse, one vector per cluster).
 
 **Inner step.** Each recurrent step runs `H_steps` outer iterations. In each outer iteration:
 
 1. **Bottom-up aggregation.** Fine states are pooled into cluster summaries (scatter-max for synthetic tasks; scatter-add for molecular tasks) and added to the coarse state before message passing.
-2. **Coarse message passing.** `h_H` is updated by a GINEConv layer operating on `G_H`.
+2. **Coarse message passing.** `h_H` is updated by a message-passing layer operating on `G_H` (Often Gated GINEConv is our default configuration).
 3. **Top-down guidance.** Each fine node receives a projected copy of its cluster's updated `h_H` as an additive context signal.
-4. **Fine message passing.** `h_L` is updated by a second GINEConv layer on `G`, repeated `L_steps` times per outer iteration, with the input node feature embedding and top-down context injected at each sub-step.
+4. **Fine message passing.** `h_L` is updated by a second message-passing layer on `G`, repeated `L_steps` times per outer iteration, with the input node feature embedding and top-down context injected at each sub-step.
 
 Both levels use RMSNorm pre-normalisation before each message-passing call, and residual connections accumulate messages additively.
 
-**Global recurrence.** The pair (h_L, h_H) is carried across `T` sequential calls to the model (reasoning steps). At training time `T` is sampled from `{T-1, T, T+1}` for a small amount of regularisation; at evaluation time it is fixed. The training loss is a discounted sum over reasoning steps: L = Σ_r γ^(T-1-r) · MSE(ŷ_r, y), where γ < 1 down-weights earlier (less converged) predictions. The loss is log-scaled before backpropagation for numerical stability across the wide dynamic range of regression targets.
+**Global recurrence.** The pair (h_L, h_H) is carried across `T` sequential calls to the model (reasoning steps). At training time `T` is sampled from `{T-1, T, T+1}` for a small amount of regularisation; at evaluation time it is fixed. The training loss is a discounted sum over reasoning steps: L = Σ_r γ^(T-1-r) · MSE(ŷ_r, y), where γ < 1 down-weights earlier (less converged) predictions. 
 
 **Graph preparation.** A `GHRTransform` is applied once per dataset: it runs Graclus clustering, pools edge attributes to the coarse graph via max-pooling, and stores `cluster`, `coarse_edge_index`, and `coarse_edge_attr` alongside the original graph data.
 
@@ -148,8 +148,10 @@ python OOR_train.py          # GHR vs ablation baselines on out-of-range SSSP
 python train_weighted.py     # GHR on weighted-distance SSSP
 ```
 
-The ablation compares GHR against variants with the coarse level removed, top-down guidance removed, and standard GNN baselines (deep GIN, recursive GIN, GCN, GAT, GPS) on random geometric graphs with weighted SSSP targets.
+The ablation compares GHR against (i) flat baselines (deep and recurrent GINE / GatedGINE, with and without the global-recurrent-step logic) and (ii) GHR variants with different message-passing backbones (GINE, GatedGINE, GCN, GAT, A-DGN), on random geometric graphs with weighted SSSP targets. See Section 4.3 of the paper for details.
 
+### City-Network
+Not in the current version of the paper, an additional exploratory benchmark.
 ---
 
 ## Repository structure
