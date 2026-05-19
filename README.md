@@ -2,8 +2,7 @@
 
 *A hierarchical recurrent GNN that couples fine- and coarse-level message passing for long-range reasoning.*
 
-[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![arXiv](https://img.shields.io/badge/arXiv-2605.18387-b31b1b.svg)](https://arxiv.org/abs/2605.18387)
 
 GHR is a graph neural network framework designed for tasks that require propagating information across many hops. It maintains two coupled hidden states—one at the resolution of the original graph and one at the resolution of a learned coarse abstraction—and evolves them together over multiple recurrent steps. The coarse level provides long-range context to the fine level at every step; the fine level continuously summarises back upward. At inference time, the joint state is rolled forward across several reasoning steps, so the effective receptive field grows with computation rather than with depth. Unlike transformer-based long-range methods, GHR scales linearly with graph size and uses no positional encoding (on molecular benchmarks Laplacian PE can be used as an optional add-on).
 
