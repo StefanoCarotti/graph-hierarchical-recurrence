@@ -1,0 +1,50 @@
+method: bayes 
+program: sweep_run_gnn_gp.py
+metric:
+  goal: minimize
+  name: val_loss
+parameters:
+  conv_layer:
+    values:
+      - PHDGN
+  gnn_type:
+    values:
+      - PHDGN
+  num_layers:
+    min: 10
+    max: 40
+  hidden_dim:
+    min: 16
+    max: 256
+  lr:
+    min: 0.00001
+    max: 0.01
+  weight_decay:
+    min: 0.00000001
+    max: 0.001
+  epsilon:
+    min: 0.001
+    max: 1.0
+  alpha:
+    min: 0.01
+    max: 1.0
+  beta:
+    min: 0.01
+    max: 1.0
+  p_conv_mode:
+    values: ['naive', 'gcn']
+  q_conv_mode:
+    values: ['naive', 'gcn']
+  doubled_dim:
+    values: [True, False]
+  final_state:
+    values: ['p', 'q', 'pq']
+  dampening_mode:
+    values: ["param", "param+", "MLP4ReLU", "DGNReLU", ] # TODO add none
+  external_mode:
+    values: ["MLP4Sin", "DGNtanh"] # TODO add none
+  activ_fun:
+    values: ['tanh'] # leaky relu is not monotonic
+  task:
+    values:
+      - sssp

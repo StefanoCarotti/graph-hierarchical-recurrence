@@ -1,0 +1,46 @@
+method: bayes
+program: sweep_run_gnn_gp.py
+metric:
+  goal: minimize
+  name: val_loss
+parameters:
+  conv_layer:
+    values:
+      - SWAN
+  gnn_type:
+    values:
+      - SWAN
+  num_layers:
+    min: 1
+    max: 40
+  hidden_dim:
+    min: 32
+    max: 256
+  lr:
+    min: 0.00001
+    max: 0.01
+  weight_decay:
+    min: 0.00000001
+    max: 0.001
+  epsilon:
+    min: 0.001
+    max: 1.0
+  gamma:
+    min: 0.001
+    max: 0.5
+  beta:
+    min: -1.0
+    max: 1.0
+  activ_fun:
+    values: ['tanh']
+  graph_conv:
+    values: ["AntiSymNaiveAggr", "BoundedGCNConv", "BoundedNaiveAggr"]
+  attention:
+    values: [True, False]
+  bias:
+    values: [True]
+  task:
+    values:
+      - ecc
+      # - sssp
+      # - ecc

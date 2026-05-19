@@ -1,0 +1,33 @@
+  method:  bayes
+  program: sweep_run_gnn_gp.py
+  metric:
+    goal: minimize
+    name: val_loss
+  parameters:
+    gnn_type: 
+      values:
+       - GNN
+    num_layers:
+      min: 10
+      max: 40
+    hidden_dim:
+      min: 32
+      max: 256
+    lr:
+      min: 0.00001
+      max: 0.01
+    weight_decay:
+      min: 0.00000001
+      max: 0.001
+    alpha:
+      min: 0.0
+      max: 0.9
+    conv_layer:
+      values:
+       - GCN2Conv
+    task:
+      values:
+        - energy
+        # - sssp
+        # - ecc
+      

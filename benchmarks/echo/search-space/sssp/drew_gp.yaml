@@ -1,0 +1,35 @@
+method: bayes
+program: sweep_run_gnn_gp.py
+metric:
+  goal: minimize
+  name: val_loss
+parameters:
+  conv_layer:
+    values:
+      - DRew_GCN
+  gnn_type:
+    values:
+      - DRew_GCN
+  num_layers: # TODO k-hop
+    min: 2
+    max: 4
+  k_hop:
+    values : [5, 10]
+  hidden_dim:
+    min: 32
+    max: 256
+  lr:
+    min: 0.00001
+    max: 0.01
+  weight_decay:
+    min: 0.00000001
+    max: 0.001
+  batch_size:
+    values: [256]
+  delay:
+    values: [True, False]
+  task:
+    values:
+      - sssp
+      # - sssp
+      # - ecc

@@ -1,0 +1,17 @@
+gnn_type: GHR
+parameters:
+  lr:
+    min: 0.0001
+    max: 0.01
+  hidden_dim:
+    values: [32]
+  batch_size:
+    values: [64, 128]
+  l_steps:
+    min: 2
+    max: 5
+  h_steps:
+    min: 1
+    max: 4
+  use_swiglu:
+    values: [True, False]

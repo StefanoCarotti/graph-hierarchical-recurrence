@@ -1,0 +1,15 @@
+data-generation/jobs/
+data-generation/lrim_gen/
+data-generation/lrim_generated_data/
+*.sif
+*.npy
+*.pt
+*.pyc
+**/__pycache__/
+
+**/results/
+**/wandb/
+model-training/best-inference-16-0.6/
+model-training/best-inference-16-0.6.zip
+model-training/table_*/
+model-training/checkpoints/

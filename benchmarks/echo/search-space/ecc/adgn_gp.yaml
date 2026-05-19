@@ -1,0 +1,45 @@
+method:  bayes
+program: sweep_run_gnn_gp.py
+metric:
+  goal: minimize
+  name: val_loss
+parameters:
+  conv_layer:
+    values:
+      - ADGN
+  gnn_type: 
+    values:
+      - ADGN
+  num_layers:
+    min: 1
+    max: 40
+  hidden_dim:
+    min: 32
+    max: 256
+  lr:
+    min: 0.00001
+    max: 0.01
+  weight_decay:
+    min: 0.00000001
+    max: 0.001
+  batch_size:
+    values: [256]
+  epsilon:
+    min: 0.001
+    max: 0.5
+  gamma:
+    min: 0.001
+    max: 0.5
+  activ_fun:
+    values: ['tanh'] # leaky relu is not monotonic
+  graph_conv:
+    values: ['NaiveAggr', 'GCNConv']
+  bias:
+    values: [True]
+  train_weights:
+    values: [True]
+  weight_sharing:
+    values: [True]
+  task:
+    values:
+      - ecc
