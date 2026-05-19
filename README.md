@@ -159,11 +159,11 @@ GHR/
 ├── notebooks/
 │   └── quickstart.ipynb       # 5-minute hands-on tutorial 
 ├── benchmarks/
-│   ├── echo/                  # ECHO benchmark (Synth + Chem) — git submodule
+│   ├── echo/                  # ECHO benchmark (Synth + Chem)
 │   │   ├── models/            # GHRModel and baselines (ADGN, DRew, GraphCON, …)
 │   │   ├── scripts/           # Training scripts and per-task run_*.sh wrappers
 │   │   └── utils/             # Dataset loading, GHRTransform, Lightning modules
-│   └── lrim/                  # LRIM benchmark (Ising model graphs) — git submodule
+│   └── lrim/                  # LRIM benchmark (Ising model graphs)
 │       └── example-setup/     # Minimal single-file training example
 ├── experiments/
 │   ├── lrgb/                  # LRGB Peptides-struct experiment
