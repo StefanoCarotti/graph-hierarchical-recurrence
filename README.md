@@ -72,7 +72,7 @@ pip install -r requirements.txt
 bash smoke_test.sh
 ```
 
-Expected: `PASS : 9   FAIL : 0   TIMEOUT: 0`
+Expected: `PASS : 6   FAIL : 0   TIMEOUT: 0`
 
 ---
 

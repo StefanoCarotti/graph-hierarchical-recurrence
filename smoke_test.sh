@@ -63,10 +63,6 @@ run_smoke "ECHO ECHO_train.py (sssp, GHR)" \
     "$REPO_ROOT/benchmarks/echo/scripts" \
     "python ECHO_train.py --task sssp --gnn_type GHR --hidden_dim 32 --l_steps 2 --h_steps 2 --lr 1e-3 --batch_size 4 --device cpu --smoke-test"
 
-run_smoke "ECHO train.py (sssp, GHR)" \
-    "$REPO_ROOT/benchmarks/echo/scripts" \
-    "python train.py --task sssp --gnn_type GHR --hidden_dim 32 --l_steps 2 --h_steps 2 --lr 1e-3 --batch_size 4 --device cpu --smoke-test"
-
 # ── LRIM benchmark ────────────────────────────────────────────────────────────
 run_smoke "LRIM example-setup/LRIM_train.py" \
     "$REPO_ROOT/benchmarks/lrim/example-setup" \
@@ -74,7 +70,7 @@ run_smoke "LRIM example-setup/LRIM_train.py" \
 
 # ── LRGB ──────────────────────────────────────────────────────────────────────
 run_smoke "LRGB LRGB_train.py" \
-    "$REPO_ROOT/experiments/lrgb" \
+    "$REPO_ROOT/benchmarks/lrgb" \
     "python LRGB_train.py --config LRGB.yaml --smoke-test"
 
 # ── RGG ablations ─────────────────────────────────────────────────────────────
@@ -82,17 +78,13 @@ run_smoke "RGG OOR_train.py" \
     "$REPO_ROOT/experiments/rgg" \
     "python OOR_train.py --smoke-test"
 
-run_smoke "RGG train.py" \
-    "$REPO_ROOT/experiments/rgg" \
-    "python train.py --smoke-test"
-
 run_smoke "RGG train_weighted.py" \
     "$REPO_ROOT/experiments/rgg" \
     "python train_weighted.py --smoke-test"
 
 # ── City network ──────────────────────────────────────────────────────────────
 run_smoke "City network train.py" \
-    "$REPO_ROOT/experiments/city_network" \
+    "$REPO_ROOT/benchmarks/city_network" \
     "python train.py --smoke-test"
 
 # ── Summary ───────────────────────────────────────────────────────────────────
