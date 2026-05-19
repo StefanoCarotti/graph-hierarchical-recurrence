@@ -76,7 +76,7 @@ def create_model_and_trainer(config, num_feat, num_class, scaling_factor, task, 
     import lightning as L
     from lightning.pytorch.loggers import WandbLogger, CSVLogger
     from lightning.pytorch.callbacks import EarlyStopping, ModelCheckpoint
-    from utils.litmodels import LitGraphNN
+    from utils.ECHO_litmodels import LitGraphNN
     from ray.tune.integration.pytorch_lightning import TuneReportCallback # <-- Add this
 
     
