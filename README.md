@@ -134,7 +134,7 @@ OOD evaluation (extrapolation to larger lattice sizes) is run by loading a check
 ### LRGB Peptides-struct
 
 ```bash
-cd experiments/lrgb
+cd benchmarks/lrgb
 python LRGB_train.py --config LRGB.yaml
 ```
 
@@ -163,12 +163,12 @@ GHR/
 │   │   ├── models/            # GHRModel and baselines (ADGN, DRew, GraphCON, …)
 │   │   ├── scripts/           # Training scripts and per-task run_*.sh wrappers
 │   │   └── utils/             # Dataset loading, GHRTransform, Lightning modules
-│   └── lrim/                  # LRIM benchmark (Ising model graphs)
-│       └── example-setup/     # Minimal single-file training example
+│   ├── lrim/                  # LRIM benchmark (Ising model graphs)
+│   │   └── example-setup/     # Minimal single-file training example
+│   ├── lrgb/                  # LRGB Peptides-struct benchmark
+│   └── city_network/          # Urban road-network benchmark
 ├── experiments/
-│   ├── lrgb/                  # LRGB Peptides-struct experiment
-│   ├── rgg/                   # RGG-SSSP ablation study (GHR vs baselines)
-│   └── city_network/          # Urban road-network experiment
+│   └── rgg/                   # RGG-SSSP ablation study (GHR vs baselines)
 ├── smoke_test.sh              # Runs all 9 training entry-points for 1 batch each
 ├── requirements.txt           # Python dependencies
 └── LICENSE                    # MIT
