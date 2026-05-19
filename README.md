@@ -151,7 +151,9 @@ python train_weighted.py     # GHR on weighted-distance SSSP
 The ablation compares GHR against (i) flat baselines (deep and recurrent GINE / GatedGINE, with and without the global-recurrent-step logic) and (ii) GHR variants with different message-passing backbones (GINE, GatedGINE, GCN, GAT, A-DGN), on random geometric graphs with weighted SSSP targets. See Section 4.3 of the paper for details.
 
 ### City-Network
+
 Not in the current version of the paper, an additional exploratory benchmark.
+
 ---
 
 ## Repository structure
