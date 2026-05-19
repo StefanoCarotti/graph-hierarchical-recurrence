@@ -39,6 +39,7 @@ Both levels use RMSNorm pre-normalisation before each message-passing call, and 
 | ECHO-Energy | Energy | MAE ↓ | 6.040 | 5.257 (GPS) |
 | LRGB | Peptides-struct | MAE ↓ | 0.2821 | 0.2358 (Cache-GNN) |
 | LRIM | 16-Hard | LogMSE ↓ | -4.195 | -4.334 (GPS) |
+
 GHR achieves state-of-the-art on ECHO-Synth and ECHO-Energy while operating at hidden dimension 32 in most runs—one to two orders of magnitude fewer parameters than the strongest baselines on those tasks. On the LRIM benchmark (Ising model graphs up to 65k nodes), GHR is competitive on in-distribution evaluation and shows strong out-of-distribution extrapolation to larger lattice sizes not seen during training. Full numerical results and ablation tables are reported in the accompanying paper.
 
 ---
